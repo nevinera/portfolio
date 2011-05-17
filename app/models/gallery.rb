@@ -2,6 +2,8 @@ class Gallery < ActiveRecord::Base
   belongs_to :owner
   has_many :pictures, :dependent => :destroy
 
+  validates_uniqueness_of :shortname
+
   default_scope :order => 'ordering ASC'
 
   def self.create_from_imgur(own, gallery_hash, albums=nil)
