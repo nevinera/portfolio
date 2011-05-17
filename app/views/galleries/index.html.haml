@@ -1,1 +1,6 @@
 %h3 All Galleries
+
+%ol
+  - @gals.each do |gal|
+    %li= link_to gal.title, gallery_path(gal)
+      
