@@ -1,2 +1,9 @@
 %h3= "Gallery #{@gal.title}"
 
+%ol
+  - @gal.pictures.each do |pic|
+    %li
+      = image_tag pic.url
+      %p= pic.caption
+
+
