@@ -2,6 +2,7 @@ class Gallery < ActiveRecord::Base
   belongs_to :owner
   has_many :pictures, :dependent => :destroy
 
+  default_scope :order => 'ordering ASC'
 
   def self.create_from_imgur(own, gallery_hash, albums=nil)
     albums ||= own.get("account/albums.json")['albums']
@@ -14,6 +15,7 @@ class Gallery < ActiveRecord::Base
       :shortname    => album['link'].split('/').last,
       :description  => album['description'],
       :imgur_id     => album['id'],
+      :ordering     => album['order'],
       :owner_id     => own.id
     })
 
