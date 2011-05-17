@@ -1,11 +1,17 @@
 class Owner < ActiveRecord::Base
-  has_many :galleries
   has_many :pictures, :through => :galleries
+  has_many :galleries
 
   def albums
-    self.get("account/albums.json")['albums']
+    @albums ||= self.get("account/albums.json")['albums'].select{|a| a['privacy'] == 'public'}
   end
 
+  def rebuild_galleries_from_imgur!
+    self.galleries.destroy_all
+    self.albums.each do |album|
+      Gallery.create_from_imgur(self, album['id'], self.albums)
+    end
+  end
 
   
 

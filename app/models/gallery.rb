@@ -1,6 +1,6 @@
 class Gallery < ActiveRecord::Base
   belongs_to :owner
-  has_many :pictures
+  has_many :pictures, :dependent => :destroy
 
 
   def self.create_from_imgur(own, gallery_hash, albums=nil)
@@ -13,7 +13,8 @@ class Gallery < ActiveRecord::Base
       :title        => album['title'],
       :shortname    => album['link'].split('/').last,
       :description  => album['description'],
-      :hash         => album['id']
+      :imgur_id     => album['id'],
+      :owner_id     => own.id
     })
 
     images = own.get("account/albums/#{gallery_hash}.json")['albums']
