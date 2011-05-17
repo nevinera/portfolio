@@ -8,3 +8,4 @@ gem 'haml'
 gem 'haml-rails'
 
 gem 'rest-client'
+gem 'heroku'
