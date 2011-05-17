@@ -1,4 +1,8 @@
 class GalleriesController < ApplicationController
+
+  def splash
+  end
+
   def index
     @gals = Gallery.all
   end
