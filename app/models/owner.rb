@@ -2,10 +2,12 @@ class Owner < ActiveRecord::Base
   has_many :galleries
   has_many :pictures, :through => :galleries
 
-  def album_list
-    self.get("account/albums.json")
+  def albums
+    self.get("account/albums.json")['albums']
   end
 
+
+  
 
   def get_cookie
     data = {
