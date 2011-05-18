@@ -9,3 +9,5 @@ gem 'haml-rails'
 
 gem 'rest-client'
 gem 'heroku'
+
+gem 'json'
