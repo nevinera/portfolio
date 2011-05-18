@@ -14,7 +14,7 @@ class Owner < ActiveRecord::Base
   end
 
   def limited_rebuild!(period)
-    if self.last_rebuilt_at + period < Time.now
+    if self.last_rebuilt_at.blank? or (self.last_rebuilt_at + period < Time.now)
       self.rebuild_galleries_from_imgur!
     else
       raise "Cannot rebuild until #{self.last_rebuilt_at + period}!"
