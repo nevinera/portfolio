@@ -2,3 +2,5 @@
 
 %p= "Last built: #{@last_built or 'never'}"
 %p= "Rebuild the site from #{@username}.imgur.com?"
+
+= button_to 'Rebuild', :action => "fetch"
