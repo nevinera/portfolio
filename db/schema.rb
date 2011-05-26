@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110526014534) do
+ActiveRecord::Schema.define(:version => 20110526023531) do
 
   create_table "galleries", :force => true do |t|
     t.string   "title"
@@ -18,19 +18,9 @@ ActiveRecord::Schema.define(:version => 20110526014534) do
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "owner_id"
     t.string   "shortname"
     t.string   "imgur_id"
     t.integer  "ordering"
-  end
-
-  create_table "owners", :force => true do |t|
-    t.string   "username"
-    t.string   "password"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "email"
-    t.datetime "last_rebuilt_at"
   end
 
   create_table "pictures", :force => true do |t|
@@ -44,7 +34,6 @@ ActiveRecord::Schema.define(:version => 20110526014534) do
     t.integer  "width"
     t.integer  "height"
     t.string   "thumbnail_url"
-    t.integer  "owner_id"
   end
 
   create_table "settings", :force => true do |t|

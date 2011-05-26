@@ -5,5 +5,5 @@ end
 
 desc "This task rebuilds the gallery information"
 task :rebuild => :environment do
-  Owner.first.rebuild_galleries_from_imgur!
+  Gallery.rebuild_galleries_from_imgur!
 end

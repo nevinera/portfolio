@@ -10,8 +10,7 @@ class Picture < ActiveRecord::Base
       :height           => j['image']['height'],
       :url              => j['links']['original'],
       :thumbnail_url    => j['links']['large_thumbnail'],
-      :gallery_id       => gal.id,
-      :owner_id         => gal.owner.id
+      :gallery_id       => gal.id
     })
   end
 
