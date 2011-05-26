@@ -3,6 +3,10 @@ class GalleriesController < ApplicationController
   def splash
   end
 
+  def main
+    @own = Owner.first
+  end
+
   def index
     @gals = Gallery.all
   end
