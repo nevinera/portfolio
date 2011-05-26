@@ -1,6 +1,19 @@
 class GalleriesController < ApplicationController
+  def setup
+    if settings_found?
+      redirect_to root_path
+    end
+  end
+  def write_settings
+    Setting.set(:username, params[:username]) if params[:username]
+    Setting.set(:password, params[:password]) if params[:password]
+    Setting.set(:email,    params[:email])    if params[:email]
+
+    redirect_to root_path
+  end
 
   def splash
+    redirect_to(setup_path) unless self.settings_found?
   end
 
   def main
@@ -24,5 +37,10 @@ class GalleriesController < ApplicationController
   def fetch
     Gallery.limited_rebuild! 5.minutes
     redirect_to  root_path
+  end
+
+
+  def settings_found?
+    Setting.get(:username).present? and Setting.get(:password).present? and Setting.get(:email).present?
   end
 end

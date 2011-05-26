@@ -3,6 +3,7 @@ Portfolio::Application.routes.draw do
   match "/galleries" => "galleries#index"
   match "/rebuild" => "galleries#rebuild", :via => :get
   match "/rebuild" => "galleries#fetch", :via => :post
+  match "/setup" => "galleries#setup"
 
   root :to => "galleries#splash"
 end
