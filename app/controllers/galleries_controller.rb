@@ -26,10 +26,6 @@ class GalleriesController < ApplicationController
     redirect_to(setup_path) unless self.settings_found?
   end
 
-  def main
-    redirect_to(setup_path) unless self.settings_found
-  end
-
   def index
     @gals = Gallery.all
     @email = Setting.get :email
