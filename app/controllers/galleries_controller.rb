@@ -40,8 +40,13 @@ class GalleriesController < ApplicationController
   end
 
   def fetch
-    Gallery.limited_rebuild! 5.minutes
-    redirect_to  root_path
+    begin
+      Gallery.limited_rebuild! 5.minutes
+      redirect_to root_path
+    rescue RestClient::BadRequest
+      Setting.clear!
+      redirect_to root_path
+    end
   end
 
 

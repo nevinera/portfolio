@@ -1,6 +1,10 @@
 class Setting < ActiveRecord::Base
   validates_uniqueness_of :name
 
+  def self.clear!
+    Setting.delete_all
+  end
+
   def self.get(name)
     Setting.where(:name => name.to_s).first.try(:value)
   end
