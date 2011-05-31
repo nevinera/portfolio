@@ -23,17 +23,17 @@ class GalleriesController < ApplicationController
   end
 
   def splash
-    redirect_to(setup_path) unless self.settings_found?
+    redirect_to(setup_path) unless settings_found?
   end
 
   def index
-    redirect_to(setup_path) unless self.settings_found?
+    redirect_to(setup_path) unless settings_found?
     @gals = Gallery.all
     @email = Setting.get :email
   end
 
   def show
-    redirect_to(setup_path) unless self.settings_found?
+    redirect_to(setup_path) unless settings_found?
     @gal = Gallery.find_by_shortname(params[:shortname])
     raise "No gallery found" unless @gal.present?
   end
