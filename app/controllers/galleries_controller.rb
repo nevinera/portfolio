@@ -6,14 +6,19 @@ class GalleriesController < ApplicationController
   end
 
   def write_settings
-    if [params[:username], params[:password], params[:email]].all?{|p| p.present?}
-      Setting.set(:username, params[:username])
-      Setting.set(:password, params[:password])
-      Setting.set(:email,    params[:email]) 
-
+    if settings_found?
+      raise "reset settings by changing the imgur password"
       redirect_to root_path
     else
-      redirect_to setup_path
+      if [params[:username], params[:password], params[:email]].all?{|p| p.present?}
+        Setting.set(:username, params[:username])
+        Setting.set(:password, params[:password])
+        Setting.set(:email,    params[:email]) 
+
+        redirect_to root_path
+      else
+        redirect_to setup_path
+      end
     end
   end
 
@@ -22,6 +27,7 @@ class GalleriesController < ApplicationController
   end
 
   def main
+    redirect_to(setup_path) unless self.settings_found
   end
 
   def index
