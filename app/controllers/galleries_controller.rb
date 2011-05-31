@@ -15,7 +15,7 @@ class GalleriesController < ApplicationController
         Setting.set(:password, params[:password])
         Setting.set(:email,    params[:email]) 
 
-        redirect_to rebuild_path
+        self.fetch
       else
         redirect_to setup_path
       end
