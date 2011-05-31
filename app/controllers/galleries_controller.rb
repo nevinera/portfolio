@@ -4,12 +4,17 @@ class GalleriesController < ApplicationController
       redirect_to root_path
     end
   end
-  def write_settings
-    Setting.set(:username, params[:username]) if params[:username]
-    Setting.set(:password, params[:password]) if params[:password]
-    Setting.set(:email,    params[:email])    if params[:email]
 
-    redirect_to root_path
+  def write_settings
+    if [params[:username], params[:password], params[:email]].all?{|p| p.present?}
+      Setting.set(:username, params[:username])
+      Setting.set(:password, params[:password])
+      Setting.set(:email,    params[:email]) 
+
+      redirect_to root_path
+    else
+      redirect_to setup_path
+    end
   end
 
   def splash
