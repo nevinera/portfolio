@@ -1,9 +1,16 @@
 %h3 Setup
 
-%ol
-  %li
-    Username:
-  %li
-    Email:
-  %li
-    Password:
+= form_tag :action => 'setup' do |f|
+  %table
+    %tr
+      %td username:
+      %td= text_field_tag 'username', '', :size => 20, :placeholder => 'imgur username'
+    %tr
+      %td email:
+      %td= text_field_tag 'email',    '', :size => 20, :placeholder => 'email address'
+    %tr
+      %td password:
+      %td= text_field_tag 'password', '', :size => 20, :placeholder => 'imgur password'
+    %tr
+      %td
+      %td= submit_tag 'Build', :confirm => 'Build the site with this imgur account?'
